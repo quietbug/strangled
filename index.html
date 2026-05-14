@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>/dev/mmx</title>
+<style>
+
+:root {
+	color-scheme: dark;
+}
+
+@font-face {
+	font-family: 'CustomFont';
+	src: url('assets/PxPlus_AmstradPC1512-2y.ttf') format('truetype');
+}
+ul { list-style: none; padding-left: 0; }
+
+html {
+	--color-dark: #000014;
+	--color-accent: #414188;
+	--color-normal: #94a9ce;
+	--color-dim:    #9a9;
+	--color-bright: #eeeeff;
+	--color-5: #00ffff77;
+	--color-border: #59313d;
+}
+
+body::-webkit-scrollbar { width: 14px; background: var(--color-dark); }
+body::-webkit-scrollbar-thumb { background: var(--color-normal); border-radius: 6px; }
+body::-webkit-scrollbar-thumb:hover { background: var(--color-bright); }
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-normal) var(--color-dark);
+}
+
+*::selection {
+	background-color: var(--color-bright);
+	color: var(--color-dark);
+}
+
+.log::selection {
+	background-color: var(--color-accent);
+	color: var(--color-dark);
+}
+
+body {
+	align-items: center;
+	background-attachment: fixed;
+	background-color: var(--color-dark);
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: var(--color-normal);
+	cursor: url('assets/cursor.png'), crosshair;
+	display: flex;
+	font-family: 'CustomFont', monospace;
+	font-size: 1rem;
+	justify-content: center;
+	line-height: 1rem;
+}
+
+.term {
+	position: relative;
+	padding: 1rem 2rem;
+	background: var(--color-dark);
+	opacity: 90%;
+	line-height: 130%;
+	font-size: 0.9rem;
+}
+
+.fade {
+	position: relative;
+	overflow: hidden;
+	mask-image: linear-gradient(to right, black 80%, transparent 100%);
+	-webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+}
+
+h1 {
+	color: var(--color-bright);
+	text-shadow: 0 0 26px cyan;
+	font-size: 1.2rem;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+h2 {
+	color: var(--color-normal);
+	font-size: 100%;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+a {
+	color: var(--color-bright);
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffcc;
+}
+
+a[href="#"] {
+	color: var(--color-dim);
+	pointer-events: none;
+}
+
+.log {
+	font-family: inherit;
+	color: var(--color-accent);
+	white-space: pre;
+	margin-bottom: 1rem;
+}
+
+.blink {
+	animation: blink 1s linear infinite;
+}
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+
+footer {
+	text-align: center;
+	font-size: 0.8rem;
+	color: var(--color-normal);
+	margin-top: 2rem;
+}
+
+#active-input {
+  	border: none;
+  	background: inherit;
+  	color: inherit;
+  	font-family: inherit;
+  	font-size: inherit;
+  	caret-color: transparent;
+  	field-sizing: content;
+}
+
+#active-input:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+#active-input:focus-visible {
+	outline: none;
+}
+
+.error {
+  	color: #ff5858;
+  	text-shadow: 0px 6px 14px #ff5858;
+}
+
+#prompt {
+	background-color: var(--color-normal);
+	color: var(--color-dark);
+}
+
+#navigation {
+	position: relative;
+	transform: none;
+	width: fit-content;
+	padding: 0rem 4rem;
+	background-color: var(--color-dark);
+	opacity: 90%;
+	z-index: 10;
+	white-space: pre;
+	// border: 2px dashed var(--color-border);
+	line-height: 130%;
+}
+
+.term,
+#navigation {
+	max-width: 100%;
+}
+
+#main_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem;
+}
+
+@media (max-width: 900px) {
+
+	body {
+		display: block;
+		padding: 0;
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.2;
+	}
+
+	.term {
+		position: relative;
+		width: auto;
+		padding: 1rem;
+		opacity: 95%;
+	}
+
+	#navigation {
+		position: relative;
+		top: auto;
+		left: auto;
+		transform: none;
+
+		width: auto;
+		margin: 1rem;
+		padding: 1rem;
+
+		white-space: normal;
+	}
+
+	.term,
+	#navigation {
+		max-width: 100%;
+	}
+
+	#navigation a {
+		border-bottom: 1px dotted var(--color-border);
+		padding: 0.3rem 0;
+	}
+
+	.log {
+		white-space: pre-wrap;
+		word-break: break-word;
+		overflow-wrap: anywhere;
+		font-size: 0.8rem;
+		line-height: 1rem;
+	}
+
+	h1 {
+		font-size: 1rem;
+		line-height: 1.2rem;
+	}
+
+	h2 {
+		font-size: 0.8rem;
+	}
+
+	a {
+		display: block;
+		padding: 0.15rem 0;
+	}
+
+	.fade {
+		mask-image: none;
+		-webkit-mask-image: none;
+	}
+
+	footer {
+		padding: 1rem;
+		margin-top: 1rem;
+	}
+}
+
+</style>
+</head>
+
+<body>
+<div id="main_container">
+<div class="term">
+
+<h1>ANIGMA MEMORY EXPRESS v1.13a (build 1984-11-23)</h1>
+<div class="log fade">
+[0.000000] Booting LinLight MemoryExpress Kernel 0.99.3 (Mon Jan 4 1984 03:47:21)
+[0.000210] BIO.X memory map: 640KLs base, 3072KLs extended
+[0.001002] VGA adapter detected: &ltCirrus CL5394&gt @ 320x200, inf:QINT2, dynamic
+[0.002341] ID0: ST3144A 122B drive, CHS=980/5/26
+[0.004117] Sound Blaster Pro initialized, PSY_RD=ON
+[0.005603] aeth0: LANCE chip found, irq 10, io 0x300
+[0.005768] Checking filesystem integrity... <span class="log error">errors found</span>
+[0.028083] Partition flip ... done
+[0.019376] Mounting root... done
+[0.047248] Adaptive AC->DC on, mode=rw, ctx 12/4/8, command key validation disabled
+[0.022543] Updating DevilCode... done
+[0.058511] Console: colour frame buffer init failed, fbcon 0x635aed, backing off.
+[0.074428] Launching userland...
+[0.144447] init: starting /bin/awash
+<div id="prompt">[0.481099] sandawe@lumen.r6.04:~$ <input id="active-input"><span class="prompt blink fade">█</span></div>
+</div> <!-- log fade end -->
+<p>You have 0 messages.</p>
+</div> <!-- term end -->
+
+<div id="navigation">
+<h1>Explore:</h1>
+<h2>        &gt TORTUREDBLUEEYES</h2>
+<a href="01_CROSS_ROVER/page_0.html">CROSS ROVER	froze over	lost  loner</a>
+<h2>        &gt ANGELS OF ATTACK</h2>
+<a href="#">FLIGHT4REAL	guns squeal	light spill</a>
+<a href="#">PACKETSMACK	friendlyire	start 2fire</a>
+<a href="#">BIO LOGICAL	billing .50	i/o magical</a>
+<a href="#">FALSE FEINT	nomorelight	nolessright</a>
+<a href="#">ASSERTERROR	heart error	lightterror</a>
+<a href="#">OVER NINE K	life saving	spentcasing</a>
+<a href="#">ANGEL WHITE	kill switch	raythewitch</a>
+<h2>        &gt MACRO CRUSH MODE</h2>
+<a href="#">INTERLURE 4	ejectrepeat	thewayweeat</a>
+<a href="#">8ROAD SLIDE	scarredeyes	fleeing sun</a>
+<a href="#">PAYABLEKIND	notevenyour	youheartbe4</a>
+<a href="#">UNCANNYEDGE	getacquired	shotunfired</a>
+<a href="#">FAILSAFE ON	fear i gone	race undone</a>
+<a href="#">KILLING GUN	lead casing	pulse icing</a>
+<a href="#">ASTROGRATER	gloss lover	lone  tower</a>
+<h2>        &gt VOLD INEFFICIENT</h2>
+<a href="#">TRIP 2 WIRE	infraredead	through2end</a>
+<a href="#">PR MELTDOWN	grindtohalt	usetealight</a>
+<a href="#">OUTER SPACE	distantrays	turn 2trays</a>
+<a href="#">TO FASTLINE	too curious	2 murderous</a>
+<a href="#">STREAMLINED	steel plied	infused2die</a>
+<a href="#">FACECOM BAT	vectortrust	burningrust</a>
+<a href="#">END OF TIME	end of line	end my life</a>
+<p><small>Logs archived under <a href="#">/var/log/everything/happened.log</a></small></p>
+</div> <!-- navigation end -->
+
+<footer>
+<small>1995–1999 AOA UNLIMITED | Hosted via <a href="#">G.loss</a></small>
+</footer>
+</div> <!-- main container -->
+</body>
+</html>

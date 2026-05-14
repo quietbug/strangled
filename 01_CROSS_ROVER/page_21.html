@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image 22: 01_CROSS_ROVER_0022.webp</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+    background: #000;
+    color: #fff;
+}
+
+@media (pointer: fine) {
+  .bg {
+      pointer-events: none;
+  	  position: fixed;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.1);
+      filter: blur(40px) brightness(0.4);
+      z-index: -1;
+    }
+}
+
+/* no blur for mobile */
+@media (pointer: coarse) {
+  .bg {
+	  pointer-events: none;
+	  position: fixed;
+	  background-image: none !important;
+	  background-color: black;
+  }
+}
+
+/* center everything */
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* hide checkbox */
+#zoom {
+    display: none;
+}
+
+.viewport {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:root {
+    --sbw: 0px;
+}
+
+#zoom:checked ~ .viewport {
+    overflow: auto;
+    display: block;
+    width: calc(100vw + var(--sbw));
+    height: 100vh;
+}
+
+#zoom:checked ~ .viewport img {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
+}
+
+/* image default = fit screen */
+img {
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    cursor: zoom-in;
+}
+
+/* controls */
+nav {
+    position: fixed;
+    bottom: 10px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+    padding: 4px 6px;
+}
+
+nav a {
+    color: #ff0202;
+    text-decoration: underline;
+}
+
+details {
+    position: relative;
+}
+
+summary {
+    cursor: pointer;
+    color: #aa1010;
+    text-decoration: underline;
+}
+
+.pages {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: #000;
+    border: 1px solid #333;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 4px;
+    min-width: 128px;
+}
+
+.pages a {
+    display: block;
+    color: #ff0202;
+    text-decoration: none;
+    font-size: 9pt;
+}
+
+.pages a:hover {
+    background: #00cccf;
+}
+
+.pages::-webkit-scrollbar {
+    width: 12px;
+}
+
+.pages::-webkit-scrollbar-track {
+    background: #000;
+}
+
+.pages::-webkit-scrollbar-thumb {
+    background: #000;
+    border: 1px solid #fff;
+}
+
+@supports (scrollbar-width: thin) and (not selector(::-webkit-scrollbar)) {
+    .pages {
+        scrollbar-color: #fff #000;
+    }
+}
+
+/* hide scrollbars only inside image viewport */
+.viewport {
+    scrollbar-width: none; /* firefox */
+}
+
+.viewport::-webkit-scrollbar {
+    display: none; /* chrome/safari */
+}
+
+/* helper box */
+.help {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: 1px solid rgba(200,0,0,0.6);
+    font-family: monospace;
+    font-size: small;
+    padding: 6px 8px;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+    pointer-events: auto;
+	z-index: 20;
+}
+
+.help a {
+	color: #ee0000;
+	text-decoration: underline;
+}
+
+.help a:hover {
+	color: #00cccf;
+	text-decoration: underline;
+}
+
+.help:hover {
+    opacity: ;
+}
+
+main:has(#zoom:checked) .help {
+    opacity: 0;
+	pointer-events: none;
+}
+
+/* tighter formatting */
+.help-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.help .title {
+    text-transform: lowercase;
+    margin-bottom: 2px;
+    opacity: 0.7;
+}
+
+/* fade out helper when zoom is active */
+#zoom:checked ~ main .help {
+    opacity: 0;
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg" style="background-image: url('pages/01_CROSS_ROVER_0022.webp')"></div>
+
+<main>
+
+<label>
+<input type="checkbox" id="zoom">
+<div class="viewport" id="viewport" tabindex="0">
+  <img src="pages/01_CROSS_ROVER_0022.webp" alt="01_CROSS_ROVER_0022.webp">
+</div>
+</label>
+
+<div class="help" id="help">
+  <div class="help-inner">
+    <a href="../index.html">Back to index</a>
+    <div class="title">one handed mode ;)</div>
+    <div><b>f</b> toggle zoom</div>
+    <div><b>a</b> prev page</div>
+    <div><b>d</b> next page</div>
+    <div><b>w</b> pan (up)</div>
+    <div><b>s</b> pan (down)</div>
+    <div class="title">for hackers:</div>
+    <div><b>h j k l</b> also pan</div>
+  </div>
+</div>
+
+<nav>
+
+<a href="page_20.html">&lt; Prev</a>
+
+<details>
+<summary>[24 pages]</summary>
+<div class="pages">
+<a href="page_0.html">  Page 0</a>
+<a href="page_1.html">  Page 1</a>
+<a href="page_2.html">  Page 2</a>
+<a href="page_3.html">  Page 3</a>
+<a href="page_4.html">  Page 4</a>
+<a href="page_5.html">  Page 5</a>
+<a href="page_6.html">  Page 6</a>
+<a href="page_7.html">  Page 7</a>
+<a href="page_8.html">  Page 8</a>
+<a href="page_9.html">  Page 9</a>
+<a href="page_10.html">  Page 10</a>
+<a href="page_11.html">  Page 11</a>
+<a href="page_12.html">  Page 12</a>
+<a href="page_13.html">  Page 13</a>
+<a href="page_14.html">  Page 14</a>
+<a href="page_15.html">  Page 15</a>
+<a href="page_16.html">  Page 16</a>
+<a href="page_17.html">  Page 17</a>
+<a href="page_18.html">  Page 18</a>
+<a href="page_19.html">  Page 19</a>
+<a href="page_20.html">  Page 20</a>
+<a href="page_21.html">> Page 21</a>
+<a href="page_22.html">  Page 22</a>
+<a href="page_23.html">  Page 23</a>
+</div>
+</details>
+
+<a href="page_22.html">Next &gt;</a>
+
+</nav>
+
+</main>
+
+<script>
+
+(function () {
+
+    const zoom = document.getElementById("zoom");
+    const viewport = document.getElementById("viewport");
+
+    const SCROLL_STEP = 80;
+
+    const prev = true;
+    const next = true;
+
+    function goPrev() {
+        if (prev) {
+            location.href = "page_20.html";
+        }
+    }
+
+    function goNext() {
+        if (next) {
+            location.href = "page_22.html";
+        }
+    }
+
+    function syncZoomFocus() {
+        if (zoom.checked) {
+            viewport.focus({ preventScroll: true });
+        }
+    }
+
+    zoom.addEventListener("change", syncZoomFocus);
+
+    viewport.addEventListener("click", () => {
+        if (zoom.checked) {
+            viewport.focus({ preventScroll: true });
+        }
+    });
+
+    document.addEventListener("keydown", function (e) {
+
+        const k = e.key.toLowerCase();
+
+        if (k === "f") {
+            e.preventDefault();
+            zoom.checked = !zoom.checked;
+            syncZoomFocus();
+        }
+
+        else if (k === "a") {
+            e.preventDefault();
+            goPrev();
+        }
+
+        else if (k === "d") {
+            e.preventDefault();
+            goNext();
+        }
+
+        else if (k === "h") {
+            e.preventDefault();
+            viewport.scrollBy(-SCROLL_STEP, 0);
+        }
+
+        else if (k === "j" || k === "s") {
+            e.preventDefault();
+            viewport.scrollBy(0, SCROLL_STEP);
+        }
+
+        else if (k === "k" || k === "w") {
+            e.preventDefault();
+            viewport.scrollBy(0, -SCROLL_STEP);
+        }
+
+        else if (k === "l") {
+            e.preventDefault();
+            viewport.scrollBy(SCROLL_STEP, 0);
+        }
+
+    });
+
+})();
+
+</script>
+
+</body>
+</html>
