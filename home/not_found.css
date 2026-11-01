@@ -1,0 +1,142 @@
+:root {
+	color-scheme: dark;
+}
+
+@font-face {
+	font-family: 'CustomFont';
+	src: url('assets/PxPlus_AmstradPC1512-2y.ttf') format('truetype');
+}
+
+ul { list-style: none; padding-left: 0; }
+
+html {
+	--color-dark: #000014;
+	--color-accent: #414188;
+	--color-normal: #94a9ce;
+	--color-dim:    #9a9;
+	--color-bright: #eeeeff;
+	--color-5: #00ffff77;
+	--color-border: #59313d;
+}
+
+body::-webkit-scrollbar { width: 14px; background: var(--color-dark); }
+body::-webkit-scrollbar-thumb { background: var(--color-normal); border-radius: 6px; }
+body::-webkit-scrollbar-thumb:hover { background: var(--color-bright); }
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-normal) var(--color-dark);
+}
+
+*::selection {
+	background-color: var(--color-bright);
+	color: var(--color-dark);
+}
+
+.log::selection {
+	background-color: var(--color-accent);
+	color: var(--color-dark);
+}
+
+body {
+	align-items: center;
+	background-attachment: fixed;
+	background-color: var(--color-dark);
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: var(--color-normal);
+	cursor: url('assets/cursor.png'), crosshair;
+	display: flex;
+	font-family: 'CustomFont', monospace;
+	font-size: 1rem;
+	justify-content: center;
+	line-height: 1rem;
+}
+
+.term {
+	position: relative;
+	padding: 1rem 2rem;
+	background: var(--color-dark);
+	opacity: 90%;
+	line-height: 130%;
+	font-size: 0.9rem;
+	border: 1px solid var(--color-border);
+}
+
+h1 {
+	color: var(--color-bright);
+	text-shadow: 0 0 26px cyan;
+	font-size: 1.2rem;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+h2 {
+	color: var(--color-normal);
+	font-size: 100%;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+a {
+	color: var(--color-bright);
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffcc;
+}
+
+.blink {
+	animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+.error {
+    color: #ff5858;
+    text-shadow: 0 0 12px #ff585866;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        #ff5858ff 0%,
+        #ff5858 50%,
+        #ff585866 80%,
+        transparent
+    );
+    box-shadow: 0 0 10px 1px #ff585844;
+}
+
+#main_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem;
+}
+
+footer {
+	text-align: center;
+	font-size: 0.8rem;
+	color: var(--color-normal);
+	margin-top: 2rem;
+}
+
+canvas {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+	z-index: -1;
+	position: fixed;
+	inset: 0;
+}

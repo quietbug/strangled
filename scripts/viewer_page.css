@@ -1,0 +1,226 @@
+:root {
+    --color-bg: #000;
+    --color-fg: #fff;
+    --color-accent: #ff0202;
+    --color-accent-muted: #aa1010;
+    --color-highlight: #00cccf;
+    --color-border: #333;
+    --color-help-link: #ee0000;
+
+    --color-nav-bg: rgba(0, 0, 0, 0.6);
+    --color-help-bg: rgba(0, 0, 0, 0.5);
+    --color-help-border: rgba(200, 0, 0, 0.6);
+
+    --sbw: 0px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace;
+    background: var(--color-bg);
+    color: var(--color-fg);
+}
+
+@media (pointer: fine) {
+    .bg {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        transform: scale(1.1);
+        filter: blur(40px) brightness(0.4);
+        z-index: -1;
+    }
+}
+
+/* no blur for mobile */
+@media (pointer: coarse) {
+    .bg {
+        pointer-events: none;
+        position: fixed;
+        background-image: none !important;
+        background-color: var(--color-bg);
+    }
+}
+
+/* center everything */
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* hide checkbox */
+#zoom {
+    display: none;
+}
+
+.viewport {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scrollbar-width: none;
+}
+
+.viewport::-webkit-scrollbar {
+    display: none;
+}
+
+#zoom:checked ~ .viewport {
+    overflow: auto;
+    display: block;
+    width: calc(100vw + var(--sbw));
+    height: 100vh;
+}
+
+#zoom:checked ~ .viewport img {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
+}
+
+/* image default = fit screen */
+img {
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    cursor: zoom-in;
+}
+
+/* controls */
+nav {
+    position: fixed;
+    bottom: 10px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    background: var(--color-nav-bg);
+    padding: 4px 6px;
+	transition: opacity 0.2s ease;
+}
+
+main:has(#zoom:checked) nav {
+    opacity: 0.5;
+}
+
+nav a {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+details {
+    position: relative;
+}
+
+summary {
+    cursor: pointer;
+    color: var(--color-accent-muted);
+    text-decoration: underline;
+}
+
+.pages {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 4px;
+    min-width: 128px;
+}
+
+.pages a {
+    display: block;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-size: 9pt;
+}
+
+.pages a:hover {
+    background: var(--color-highlight);
+}
+
+.pages::-webkit-scrollbar {
+    width: 12px;
+}
+
+.pages::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+.pages::-webkit-scrollbar-thumb {
+    background: var(--color-bg);
+    border: 1px solid var(--color-fg);
+}
+
+@supports (scrollbar-width: thin) and (not selector(::-webkit-scrollbar)) {
+    .pages {
+        scrollbar-color: var(--color-fg) var(--color-bg);
+    }
+}
+
+/* helper box */
+.help {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--color-help-bg);
+    color: var(--color-fg);
+    border: 1px solid var(--color-help-border);
+    font-family: monospace;
+    font-size: small;
+    padding: 6px 8px;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+    pointer-events: auto;
+    z-index: 20;
+}
+
+.help a {
+    color: var(--color-help-link);
+    text-decoration: underline;
+}
+
+.help a:hover {
+    color: var(--color-highlight);
+    text-decoration: underline;
+}
+
+.help:hover {
+    opacity: 1;
+}
+
+main:has(#zoom:checked) .help {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* tighter formatting */
+.help-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.help .title {
+    text-transform: lowercase;
+    margin-bottom: 2px;
+    opacity: 0.7;
+}
+
+/* fade out helper when zoom is active */
+#zoom:checked ~ main .help {
+    opacity: 0;
+}

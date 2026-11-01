@@ -1,0 +1,5 @@
+deploy/*
+!deploy/.gitkeep
+scripts/venv
+sources/*
+!sources/.gitkeep
